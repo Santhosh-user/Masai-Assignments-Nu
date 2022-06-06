@@ -7,6 +7,7 @@ function App() {
 
   const [movie, setMovie] = useState([])
   const [page, setPage] = useState(1)
+  const [pageCount, setPageCount] = useState(0)
 
   useEffect(()=>{
     getData()
@@ -32,6 +33,21 @@ function App() {
     });
   }
 
+  function handlePrevious(){
+    setPage((p)=>{
+      if(p===1) return p
+
+   return p-1 
+  })
+  }
+
+  function handleNext(){
+    setPage((p)=>{
+      if(p===setPageCount) return p
+      return p+1
+    })
+  }
+
   
 
   return (
@@ -47,7 +63,8 @@ function App() {
         }
      </div>
         <footer>
-          <button></button>
+          <button disabled={page===1} onlClick={handlePrevious}>Previous</button>
+          <button disabled={page===pageCount} onClick={handleNext}>Next</button>
         </footer>
     </div>
   );
