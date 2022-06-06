@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 
 
 
-const app = express
+const app = express()
 
 const connect = () =>{
     return mongoose.connect("mongodb+srv://Nbackend1:Nbackend1@cluster0.w5hvn.mongodb.net/?retryWrites=true&w=majority")
