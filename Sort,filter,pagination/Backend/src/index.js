@@ -10,12 +10,27 @@ const connect = () =>{
 }
 
 
-app.get("/", (req,res)=>{
-    res.send(res.data)
+
+//schema
+
+const movieSchema = new mongoose.Schema({
+    id: {type: Number},
+    movie_name: {type: String},
+    critic_rating: {type: Number},
+    year: {type: Number},
+    viewer_rating: {type: Number},
 })
 
 
+//model
 
+const Movie = mongoose.model("movie", movieSchema)
+
+
+app.get("/", (req,res)=>{
+    const movies = User.find().lean().exec()
+    res.send(movies)
+})
 
 
 
