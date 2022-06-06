@@ -32,7 +32,7 @@ app.get("/movies", async (req,res)=>{
     const size = req.query.size || 10 
 
 
-    const movies = await Movie.find().skip((page-1)*size).limit(size).lean().exec()
+    const movies = await Movie.find().sort("critic_rating").skip((page-1)*size).limit(size).lean().exec()
 
   const totalPages = (await Movie.find().countDocuments())/size 
 
