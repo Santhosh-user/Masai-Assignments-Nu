@@ -17,7 +17,7 @@ function App() {
 // console.log(useSearchParams(""))
 
   const getData = () =>{
-    axios.get(`http://localhost:2345/movies?page=$(page)`)
+    axios.get("http://localhost:2345/movies")
     .then(function (response) {
       // handle success
       console.log(response.data.movies);
@@ -64,7 +64,7 @@ function App() {
      </div>
         <footer>
           <button disabled={page===1} onlClick={handlePrevious}>Previous</button>
-          <button disabled={page===pageCount} onClick={handleNext}>Next</button>
+          <button disabled={page===page} onClick={handleNext}>Next</button>
         </footer>
     </div>
   );
