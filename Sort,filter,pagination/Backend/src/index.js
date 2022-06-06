@@ -1,7 +1,11 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const cors = require("cors")
+
 
 const app = express()
+app.use(express.json())
+app.use(cors)
 
 const connect = () =>{
     return mongoose.connect("mongodb+srv://Nbackend1:Nbackend1@cluster0.w5hvn.mongodb.net/movies")
@@ -29,7 +33,10 @@ app.get("/movies", async (req,res)=>{
 
 
     const movies = await Movie.find().skip((page-1)*size).limit(size).lean().exec()
-    res.send({movies})
+
+  const totalPages = (await Movie.find().countDocuments())/size 
+
+    res.send({movies, totalPages})
 })
 
 
