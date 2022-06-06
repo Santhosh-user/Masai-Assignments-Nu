@@ -22,8 +22,14 @@ const movieSchema = new mongoose.Schema({
 const Movie = mongoose.model("movie", movieSchema)
 
 app.get("/movies", async (req,res)=>{
-    const movies = await Movie.find().lean().exec()
-    res.send(movies)
+
+
+    const page = req.query.page || 1
+    const size = req.query.size || 10 
+
+
+    const movies = await Movie.find().skip((page-1)*size).limit(size).lean().exec()
+    res.send({movies})
 })
 
 
