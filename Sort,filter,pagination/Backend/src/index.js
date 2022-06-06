@@ -4,8 +4,8 @@ const cors = require("cors")
 
 
 const app = express()
-app.use(express.json())
-app.use(cors)
+// app.use(express.json())
+app.use(cors())
 
 const connect = () =>{
     return mongoose.connect("mongodb+srv://Nbackend1:Nbackend1@cluster0.w5hvn.mongodb.net/movies")
