@@ -11,8 +11,10 @@ const connect = () =>{
 
 
 app.get("/", (req,res)=>{
-    res.send(movies)
+    res.send(res.data)
 })
+
+
 
 
 
