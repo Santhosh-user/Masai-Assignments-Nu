@@ -6,13 +6,17 @@ import axios from "axios"
 function App() {
 
   const [movie, setMovie] = useState([])
+  const [page, setPage] = useState(1)
 
   useEffect(()=>{
     getData()
   },[])
 
+  
+// console.log(useSearchParams(""))
+
   const getData = () =>{
-    axios.get("http://localhost:2345/movies")
+    axios.get(`http://localhost:2345/movies?page=$(page)`)
     .then(function (response) {
       // handle success
       console.log(response.data.movies);
@@ -32,17 +36,19 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+     
      <div>
        <div>hello</div>
-        {/* {movie.map((e)=>{
+        {movie.map((e)=>{
           return ( <div>{e.movie_name}</div>
 
           )
         })
-        } */}
+        }
      </div>
-      </header>
+        <footer>
+          <button></button>
+        </footer>
     </div>
   );
 }
