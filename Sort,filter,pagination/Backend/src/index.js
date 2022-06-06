@@ -10,7 +10,7 @@ const connect = () =>{
 }
 
 
-app.length("/", (req,res)=>{
+app.get("/", (req,res)=>{
     res.send(movies)
 })
 
