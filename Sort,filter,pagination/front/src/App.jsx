@@ -22,10 +22,23 @@ function App() {
     setActor(e.target.value)
   }
 
+  
+  const setSorting=(e)=>{
+    setSort(e.target.value)
+  }
+
+  useEffect(()=>{
+    setParams({
+      genre: genre,
+      actor: actor,
+      sort: sort,
+    })
+  },[genre,actor,sort])
+
 
   useEffect(()=>{
     getData()
-  },[])
+  },[params])
 
   
 // console.log(useSearchParams(""))
@@ -47,20 +60,21 @@ function App() {
     });
   }
 
-  function handlePrevious(){
-    setPage((p)=>{
-      if(p===1) return p
+  // function handlePrevious(){
+  //   setPage((p)=>{
+  //     if(p===1) return p
 
-   return p-1 
-  })
-  }
+  //  return p-1 
+  // })
+  // }
 
-  function handleNext(){
-    setPage((p)=>{
-      if(p===setPageCount) return p
-      return p+1
-    })
-  }
+  // function handleNext(){
+  //   setPage((p)=>{
+  //     if(p===setPageCount) return p
+  //     return p+1
+  //   })
+  // }
+
 
   
 
@@ -89,7 +103,14 @@ function App() {
             <option value="Paul">Paul</option>
           </select>
 
-       
+          <div>
+            <p>Sort by Price</p>
+            <select onChange={setSorting}>
+              <option value="null">All</option>
+              <option value="-1">High to low</option>
+              <option value="1">Low to high</option>
+            </select>
+          </div>
 
 
 
