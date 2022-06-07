@@ -20,7 +20,7 @@ const movieSchema = new mongoose.Schema({
     year: {type: Number},
     critic_rating: {type: Number},
     genre:{type: String},
-    actior: {type: String},
+    actor: {type: String},
 })
 
 //model
@@ -30,31 +30,34 @@ const Movie = mongoose.model("movie", movieSchema)
 app.get("/movies", async (req,res)=>{
 
 
-    const page = req.query.page || 1
-    const size = req.query.size || 10 
+//     const page = req.query.page || 1
+//     const size = req.query.size || 10 
 
 
-    const movies = await Movie.find().sort("critic_rating").skip((page-1)*size).limit(size).lean().exec()
+//     // const movies = await Movie.find().sort("critic_rating").skip((page-1)*size).limit(size).lean().exec()
 
-   const totalPages = (await Movie.find().countDocuments())/size 
+//    const totalPages = (await Movie.find().countDocuments())/size 
 
-    res.send({movies, totalPages})
+//     res.send({movies, totalPages})
 
-    const movie 
-
+    let movies 
+    
+  
+        
     if(req.query["genre"]=="null"&&req.query["actor"]=="null"){
-        movie = await Movie.find().sort({viewer_rating:+req.query["sort"]}).lean().exec
+        movies = await Movie.find().sort({viewer_rating:+req.query["sort"]}).lean().exec()
     }
     else if(req.query["genre"]=="null"&&req.query["actor"]!="null"){
-        movie = await Movie.find({actor:req.query["actor"]}).sort({viewer_rating:+req.query["sort"]}).lean().exec
+        movies = await Movie.find({actor:req.query["actor"]}).sort({viewer_rating:+req.query["sort"]}).lean().exec()
     }
     else if(req.query["genre"]!="null"&&req.query["actor"]=="null"){
-        movie = await Movie.find({genre:req.query["genre"]}).sort({viewer_rating:+req.query["sort"]}).lean().exec
+        movies = await Movie.find({genre:req.query["genre"]}).sort({viewer_rating:+req.query["sort"]}).lean().exec()
     }
     else if(req.query["genre"]!="null"&&req.query["actor"]!="null"){
-        movie = await Movie.find({size:req.query["actor"]}).sort({viewer_rating:+req.query["sort"]}).lean().exec
+        movies = await Movie.find({ $and:[{ genre:req.query["genre"]},{actor:req.query["actor"]}]}).sort({viewer_rating:+req.query["sort"]}).lean().exec()
     }
 
+  return res.status(201).send(movies)
 
 })
 

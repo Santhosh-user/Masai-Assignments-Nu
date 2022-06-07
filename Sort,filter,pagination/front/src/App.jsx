@@ -12,7 +12,7 @@ function App() {
   const [pageCount, setPageCount] = useState(0)
   const [filtering, setfiltering] = useState("")
   const [genre, setgenre] = useState(null)
-  const [actor, setActor] = useState(null)
+  const [actor, setactor] = useState(null)
   const [sort,setSort] = useState(null)
   const [params, setParams] = useSearchParams()
 
@@ -22,7 +22,7 @@ function App() {
   }
 
   const settingActor = (e)=>{
-    setActor(e.target.value)
+    setactor(e.target.value)
   }
 
   
@@ -49,8 +49,8 @@ function App() {
   const getData = () =>{
     axios.get(`http://localhost:2345/movies?genre=${params.get("genre")}&actor=${params.get("actor")}&sort=${params.get("sort")}`).then(function (response) {
       // handle success
-      console.log(response.data.movies);
-      setMovie(response.data.movies)
+      console.log(response.data);
+      setMovie(response.data)
   
     })
     .catch(function (error) {
@@ -86,7 +86,7 @@ function App() {
      <div>
        <div>hello</div>
           <div>Movie Genre</div>
-          <select onChange={settingGenre}>Movie Genre
+          <select onChange={settingGenre}>
             <option value="">All</option>
             <option value="horror">horror</option>
             <option value="action">action</option>
@@ -96,8 +96,8 @@ function App() {
           </select>
 
           <div>Actor</div>
-          <select>Actor
-            <option onChange={settingActor} value="">All</option>
+          <select onChange={settingActor}>
+            <option  value="">All</option>
             <option value="Will">Will</option>
             <option value="Smith">Smith</option>
             <option value="Logan">Logan</option>
