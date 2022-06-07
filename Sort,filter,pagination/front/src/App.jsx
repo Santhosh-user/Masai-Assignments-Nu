@@ -9,6 +9,18 @@ function App() {
   const [page, setPage] = useState(1)
   const [pageCount, setPageCount] = useState(0)
   const [filtering, setfiltering] = useState("")
+  const [genre, setgenre] = useState(null)
+  const [color, setcolor] = useState(null)
+
+
+  const settingGenre = (e)=>{
+    setgenre(e.target.value)
+  }
+
+  const settingColor = (e)=>{
+    setcolor(e.target.value)
+  }
+
 
   useEffect(()=>{
     getData()
@@ -57,7 +69,7 @@ function App() {
      <div>
        <div>hello</div>
           <div>Movie Genre</div>
-          <select onChange={(e)=>{setfiltering(e.target.value)}}>Movie Genre
+          <select onChange={settingGenre}>Movie Genre
             <option value="">All</option>
             <option value="horror">horror</option>
             <option value="action">action</option>
@@ -68,7 +80,7 @@ function App() {
 
           <div>Actor</div>
           <select>Actor
-            <option value="">All</option>
+            <option onChange={settingActor} value="">All</option>
             <option value="Will">Will</option>
             <option value="Smith">Smith</option>
             <option value="Logan">Logan</option>
@@ -80,16 +92,7 @@ function App() {
 
 
 
-        {movie.filter((e)=>{
-          if(filtering==""){
-            return true
-          }
-          else{
-            if(e.genre==filtering){
-              return true
-            }
-          }
-        }).map((e)=>{
+        {movie.map((e)=>{
           return ( <div className='disp'>
               <div>Movie Name - {e.movie_name}</div>
               <div>Genre - {e.genre}</div>
