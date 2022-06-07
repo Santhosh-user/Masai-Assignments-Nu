@@ -55,6 +55,28 @@ function App() {
      
      <div>
        <div>hello</div>
+          <div>Movie Genre</div>
+          <select className='genre'>Movie Genre
+            <option value="">All</option>
+            <option value="horror">horror</option>
+            <option value="action">action</option>
+            <option value="romance">romance</option>
+            <option value="comedy">comedy</option>
+            <option value="drama">drama</option>
+          </select>
+
+          <div>Movie Genre</div>
+          <select className='genre'>Movie Genre
+            <option value="">All</option>
+            <option value="horror">horror</option>
+            <option value="action">action</option>
+            <option value="romance">romance</option>
+            <option value="comedy">comedy</option>
+            <option value="drama">drama</option>
+          </select>
+
+
+
         {movie.map((e)=>{
           return ( <div className='disp'>
               <div>Movie Name - {e.movie_name}</div>
