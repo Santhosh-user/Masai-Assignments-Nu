@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
+import {useSearchParams} from "react-router-dom"
 import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 function App() {
 
@@ -12,6 +14,7 @@ function App() {
   const [genre, setgenre] = useState(null)
   const [actor, setActor] = useState(null)
   const [sort,setSort] = useState(null)
+  const [params, setParams] = useSearchParams()
 
 
   const settingGenre = (e)=>{
@@ -44,8 +47,7 @@ function App() {
 // console.log(useSearchParams(""))
 
   const getData = () =>{
-    axios.get("http://localhost:2345/movies")
-    .then(function (response) {
+    axios.get(`http://localhost:2345/movies?genre=${params.get("genre")}&actor=${params.get("actor")}&sort=${params.get("sort")}`).then(function (response) {
       // handle success
       console.log(response.data.movies);
       setMovie(response.data.movies)
@@ -133,10 +135,10 @@ function App() {
 
 
 
-        <footer>
+        {/* <footer>
           <button disabled={page===1} onClick={handlePrevious}>Previous</button>
           <button disabled={page===page} onClick={handleNext}>Next</button>
-        </footer>
+        </footer> */}
     </div>
   );
 }

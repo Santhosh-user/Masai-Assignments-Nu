@@ -36,9 +36,26 @@ app.get("/movies", async (req,res)=>{
 
     const movies = await Movie.find().sort("critic_rating").skip((page-1)*size).limit(size).lean().exec()
 
-  const totalPages = (await Movie.find().countDocuments())/size 
+   const totalPages = (await Movie.find().countDocuments())/size 
 
     res.send({movies, totalPages})
+
+    const movie 
+
+    if(req.query["genre"]=="null"&&req.query["actor"]=="null"){
+        movie = await Movie.find().sort({viewer_rating:+req.query["sort"]}).lean().exec
+    }
+    else if(req.query["genre"]=="null"&&req.query["actor"]!="null"){
+        movie = await Movie.find({actor:req.query["actor"]}).sort({viewer_rating:+req.query["sort"]}).lean().exec
+    }
+    else if(req.query["genre"]!="null"&&req.query["actor"]=="null"){
+        movie = await Movie.find({genre:req.query["genre"]}).sort({viewer_rating:+req.query["sort"]}).lean().exec
+    }
+    else if(req.query["genre"]!="null"&&req.query["actor"]!="null"){
+        movie = await Movie.find({size:req.query["actor"]}).sort({viewer_rating:+req.query["sort"]}).lean().exec
+    }
+
+
 })
 
 
