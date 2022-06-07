@@ -57,12 +57,12 @@ function App() {
        <div>hello</div>
         {movie.map((e)=>{
           return ( <div className='disp'>
-              <div>{e.movie_name}</div>
-              <div>{e.genre}</div>
-              <div>{e.viewer_rating}</div>
-              <div></div>
+              <div>Movie Name - {e.movie_name}</div>
+              <div>Genre - {e.genre}</div>
+              <div>Viewer Rating - {e.viewer_rating}</div>
+              <div>Critic Rating - {e.critic_rating}</div>
+              <div>Year - {e.year}</div>
             </div>
-
           )
         })
         }
