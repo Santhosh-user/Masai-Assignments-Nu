@@ -20,6 +20,7 @@ const movieSchema = new mongoose.Schema({
     year: {type: Number},
     critic_rating: {type: Number},
     genre:{type: String},
+    actior: {type: String},
 })
 
 //model

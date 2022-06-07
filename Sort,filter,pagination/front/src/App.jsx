@@ -62,6 +62,7 @@ function App() {
               <div>Viewer Rating - {e.viewer_rating}</div>
               <div>Critic Rating - {e.critic_rating}</div>
               <div>Year - {e.year}</div>
+              <div>Actor - {e.actor}</div>
             </div>
           )
         })
