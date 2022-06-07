@@ -16,9 +16,10 @@ const connect = () =>{
 const movieSchema = new mongoose.Schema({
     id: {type: String},
     movie_name: {type: String},
-    critic_rating: {type: Number},
-    year: {type: Number},
     viewer_rating: {type: Number},
+    year: {type: Number},
+    critic_rating: {type: Number},
+    genre:{type: String},
 })
 
 //model

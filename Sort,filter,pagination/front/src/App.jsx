@@ -56,14 +56,25 @@ function App() {
      <div>
        <div>hello</div>
         {movie.map((e)=>{
-          return ( <div>{e.movie_name}</div>
+          return ( <div className='disp'>
+              <div>{e.movie_name}</div>
+              <div>{e.genre}</div>
+              <div>{e.viewer_rating}</div>
+              <div></div>
+            </div>
 
           )
         })
         }
      </div>
+
+
+
+
+
+
         <footer>
-          <button disabled={page===1} onlClick={handlePrevious}>Previous</button>
+          <button disabled={page===1} onClick={handlePrevious}>Previous</button>
           <button disabled={page===page} onClick={handleNext}>Next</button>
         </footer>
     </div>
