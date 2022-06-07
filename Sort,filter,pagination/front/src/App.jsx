@@ -80,16 +80,16 @@ function App() {
 
 
 
-        {movie.filter((e=>{
+        {movie.filter((e)=>{
           if(filtering==""){
             return true
           }
           else{
-            if(e.payment==filtering){
+            if(e.genre==filtering){
               return true
             }
           }
-        })).map((e)=>{
+        }).map((e)=>{
           return ( <div className='disp'>
               <div>Movie Name - {e.movie_name}</div>
               <div>Genre - {e.genre}</div>
