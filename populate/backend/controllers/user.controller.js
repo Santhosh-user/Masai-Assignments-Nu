@@ -17,7 +17,7 @@ router.post("",async (req,res)=>{
     return res.send(user)
 })
 
-router.get("/id", async(req,res)=>{
+router.get("/:id", async(req,res)=>{
     const user = await User.findById(req.params.id).lean().exec()
     return res.send(user)
 })
