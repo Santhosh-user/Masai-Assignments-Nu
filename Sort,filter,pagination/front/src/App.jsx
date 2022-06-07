@@ -57,7 +57,7 @@ function App() {
      <div>
        <div>hello</div>
           <div>Movie Genre</div>
-          <select onChange={(e)=>{setfiltering(e.target.value)}} >Movie Genre
+          <select onChange={(e)=>{setfiltering(e.target.value)}}>Movie Genre
             <option value="">All</option>
             <option value="horror">horror</option>
             <option value="action">action</option>
