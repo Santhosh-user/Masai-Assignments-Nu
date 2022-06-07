@@ -65,14 +65,14 @@ function App() {
             <option value="drama">drama</option>
           </select>
 
-          <div>Movie Genre</div>
-          <select className='genre'>Movie Genre
+          <div>Actor</div>
+          <select className='actor'>Actor
             <option value="">All</option>
-            <option value="horror">horror</option>
-            <option value="action">action</option>
-            <option value="romance">romance</option>
-            <option value="comedy">comedy</option>
-            <option value="drama">drama</option>
+            <option value="Will">Will</option>
+            <option value="Smith">Smith</option>
+            <option value="Logan">Logan</option>
+            <option value="Fury">Fury</option>
+            <option value="Paul">Paul</option>
           </select>
 
 
