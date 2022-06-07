@@ -10,15 +10,16 @@ function App() {
   const [pageCount, setPageCount] = useState(0)
   const [filtering, setfiltering] = useState("")
   const [genre, setgenre] = useState(null)
-  const [color, setcolor] = useState(null)
+  const [actor, setActor] = useState(null)
+  const [sort,setSort] = useState(null)
 
 
   const settingGenre = (e)=>{
     setgenre(e.target.value)
   }
 
-  const settingColor = (e)=>{
-    setcolor(e.target.value)
+  const settingActor = (e)=>{
+    setActor(e.target.value)
   }
 
 
