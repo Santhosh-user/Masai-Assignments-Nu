@@ -20,7 +20,7 @@ const AllUser = () =>{
             .then(function (response) {
                 // handle success
                 setDetails(response.data)
-                console.log(response);
+                console.log(response.data);
             })
             .catch(function (error) {
                 // handle error
@@ -38,7 +38,7 @@ const AllUser = () =>{
                 // <div onClick={()=>{
                 //     navigate(`OneUser/${e._id}`)
                 // }}>
-                <div>{e.user_name}</div>
+                <div>{e.first_name}</div>
                 // </div>
                 )
             })}
