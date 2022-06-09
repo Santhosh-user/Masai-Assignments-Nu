@@ -4,7 +4,6 @@ import axios from "axios"
 const NewUser = () =>{
     const [gen, setGen] = useState({
         first_name: "",
-       
     })
     const [addre, setAddre]= useState({
         address1: "",

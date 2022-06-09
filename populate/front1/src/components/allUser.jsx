@@ -2,11 +2,13 @@ import React from "react"
 import axios from "axios"
 import { useState } from "react"
 import { useEffect } from "react"
+import { useParams } from "react-router-dom"
 
 // const { useNavigate } = require("react-router-dom")
 
 const AllUser = () =>{
-
+    
+    const {id} = useParams()
     const [details, setDetails] = useState([])
 
     // const navigate = useNavigate()

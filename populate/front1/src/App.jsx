@@ -8,6 +8,11 @@ import OneUser from './components/oneuser';
 function App() {
   return (
     <div className="App">
+
+      <div>
+        <Link to = {"/"}>All Users</Link>
+        <Link to = {"/newuser"}>New User</Link>
+      </div>
       <div>
         {/* <div>List of users</div>
         <br />
@@ -20,8 +25,13 @@ function App() {
         <br />
 
        <NewUser></NewUser> */}
+       <Routes>
+         <Route path="/" element={<Users />}></Route>
+         <Route path="/newuser" element={<NewUser />}></Route>
+         <Route path="/oneuser/:id" element={< OneUser />} ></Route>
+       </Routes>
 
-       <OneUser></OneUser>
+    
       </div>
       
 
