@@ -3,15 +3,16 @@ import axios from "axios"
 import { useState } from "react"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 // const { useNavigate } = require("react-router-dom")
 
 const AllUser = () =>{
     
-    const {id} = useParams()
+    
     const [details, setDetails] = useState([])
 
-    // const navigate = useNavigate()
+    const navi = useNavigate()
 
     useEffect(()=>{
         absorbDetails()
@@ -35,13 +36,14 @@ const AllUser = () =>{
     
     return (
         <div>
+            <h2>List of users</h2>
             {details.map((e)=>{
                 return( 
-                // <div onClick={()=>{
-                //     navigate(`OneUser/${e._id}`)
-                // }}>
+                <div onClick={()=>{
+                    navi(`/oneuser/${e._id}`)
+                }}>
                 <div>{e.first_name}</div>
-                // </div>
+                 </div>
                 )
             })}
         </div>

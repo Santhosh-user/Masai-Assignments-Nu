@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom"
 
@@ -6,21 +6,40 @@ import { useParams } from "react-router-dom"
 
 const OneUser = () =>{
     const [ppl, setPpl]=useState({})
+    const {id} = useParams()
     const [changedData, seChangedData] = useState()
 
 
 
-    const mixData=(e)=>{
-        const {id,value}=e.target
-        
-    }
+    // const mixData=(e)=>{
+    //     const {id,value}=e.target
+    // }
 
+    useEffect(()=>{
+        getDetails()
+    },[])
+
+    const getDetails = () =>{
+        axios.get(`http://localhost:2345/users/${id}`)
+        .then(function (response) {
+            // handle success
+            setPpl(response.data)
+            console.log(response);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function () {
+            // always executed
+        });
+    }
 
 
     return (
         <div>
             <div>First Name: {ppl.first_name}</div>
-            <div>Edit name</div>
+            {/* <div>Edit name</div>
             <form action="">
                 <label htmlFor="">Name</label>
                 <br />
@@ -61,7 +80,7 @@ const OneUser = () =>{
                 <br />
                 <input onChange={mixData} id={"address2"} type="text" />
                 <br />
-            </form>
+            </form> */}
 
 
         </div>
