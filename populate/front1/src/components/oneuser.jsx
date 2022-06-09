@@ -39,6 +39,11 @@ const OneUser = () =>{
     return (
         <div>
             <div>First Name: {ppl.first_name}</div>
+            <button>Edit name</button>
+            <br />
+            <br />
+            <br />
+            <div>Address 1: {ppl.address}</div>
             {/* <div>Edit name</div>
             <form action="">
                 <label htmlFor="">Name</label>
