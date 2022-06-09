@@ -70,7 +70,11 @@ const OneUser = () =>{
             {address.map((ei,i)=>{
                 return( <div>
                     <div>Address1: {ei.address1}</div>
-                    <div>Address1: {ei.address2}</div>
+                    <button>Edit Address1</button>
+                    <br />
+                    <br />
+                    <div>Address2: {ei.address2}</div>
+                    <button>Edit Address2</button>
                 </div> )
             })
             }
