@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 
 const OneUser = () =>{
     const [ppl, setPpl]=useState({})
+    const [address,setAddress] = useState([])
     const {id} = useParams()
     const [changedData, seChangedData] = useState()
 
@@ -16,10 +17,10 @@ const OneUser = () =>{
     // }
 
     useEffect(()=>{
-        getDetails()
+        getName()
     },[])
 
-    const getDetails = () =>{
+    const getName = () =>{
         axios.get(`http://localhost:2345/users/${id}`)
         .then(function (response) {
             // handle success
@@ -35,6 +36,29 @@ const OneUser = () =>{
         });
     }
 
+    useEffect(()=>{
+        getAddress()
+    },[])
+
+    const getAddress = () =>{
+        axios.get(`http://localhost:2345/users/${id}/addresses`)
+        .then(function (response) {
+            // handle success
+            setAddress(response.data[0].address)
+            console.log(response.data[0].address);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function () {
+            // always executed
+        });
+    }
+
+
+
+
 
     return (
         <div>
@@ -43,7 +67,17 @@ const OneUser = () =>{
             <br />
             <br />
             <br />
-            <div>Address 1: {ppl.address}</div>
+            {address.map((ei,i)=>{
+                return( <div>
+                    <div>Address1: {ei.address1}</div>
+                    <div>Address1: {ei.address2}</div>
+                </div> )
+            })
+            }
+
+
+
+            {/* <div>Address 1: {ppl.address}</div> */}
             {/* <div>Edit name</div>
             <form action="">
                 <label htmlFor="">Name</label>
