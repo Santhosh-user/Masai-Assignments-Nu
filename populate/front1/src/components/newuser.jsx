@@ -6,8 +6,8 @@ const NewUser = () =>{
         first_name: "",
     })
     const [addre, setAddre]= useState({
-        address1: "",
-        address2: "",
+        street: "",
+        area: "",
     })
 
     const createPerson = (e)=>{
@@ -28,8 +28,8 @@ const NewUser = () =>{
 
         axios.post("http://localhost:2345/users", {
         first_name: gen.first_name,
-        address: [ {address1: addre.address1,
-                address2: addre.address2}
+        address: [ {street: addre.street,
+                area: addre.area}
         ]
       })
       .then(function (response) {
@@ -51,10 +51,10 @@ const NewUser = () =>{
               <br />
               <br />
               <form action="">
-                  <label htmlFor="">address1</label>
-                  <input onChange={createAddre} id={"address1"} type="text" />
-                  <label htmlFor="">address2</label>
-                  <input onChange={createAddre} id={"address2"} type="text" />
+                  <label htmlFor="">street</label>
+                  <input onChange={createAddre} id={"street"} type="text" />
+                  <label htmlFor="">area</label>
+                  <input onChange={createAddre} id={"area"} type="text" />
                   <button onClick={processData}>Create New USer</button>
               </form>
           </div>

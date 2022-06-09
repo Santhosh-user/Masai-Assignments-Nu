@@ -5,16 +5,23 @@ import { useParams } from "react-router-dom"
 
 
 const OneUser = () =>{
-    const [ppl, setPpl]=useState({})
+    const [ppl, setPpl]=useState([])
     const [address,setAddress] = useState([])
     const {id} = useParams()
-    const [changedData, seChangedData] = useState()
+    const [freshAddress, setfreshAddress] = useState({
+        street: "",
+        area: "",
+    })
+   
 
 
 
-    // const mixData=(e)=>{
-    //     const {id,value}=e.target
-    // }
+    const upAddress=(e)=>{
+        const {id,value}=e.target
+        setfreshAddress({
+            ...freshAddress,[id]:value
+        })
+    }
 
     useEffect(()=>{
         getName()
@@ -56,6 +63,21 @@ const OneUser = () =>{
         });
     }
 
+    const addAddress=(e)=>{
+        e.preventDefault()
+        axios.post(`http://localhost:2345/users/${id}/addresses`, {
+            street: freshAddress.street,
+            area: freshAddress.area,
+          })
+          .then(function (response) {
+            console.log(response);
+            
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
 
 
 
@@ -67,17 +89,31 @@ const OneUser = () =>{
             <br />
             <br />
             <br />
-            {address.map((ei,i)=>{
+            {address.map((e,i)=>{
                 return( <div>
-                    <div>Address1: {ei.address1}</div>
+                    <div>Address</div>
+                    <div>Street: {e.street}</div>
                     <button>Edit Address1</button>
+                    
                     <br />
                     <br />
-                    <div>Address2: {ei.address2}</div>
-                    <button>Edit Address2</button>
+                    {/* <div>Address2: {e.address2}</div>
+                    <button>Edit Address2</button> */}
                 </div> )
             })
             }
+
+
+            <form action="">
+                <label htmlFor="">Street</label>
+                <input onChange={upAddress} id={"street"} type="text" />
+                <br />
+                <br />
+
+                <label htmlFor="">Area</label>
+                <input onChange={upAddress} id={"area"} type="text" />
+                <button onClick={addAddress}>Add new address</button>
+            </form>
 
 
 
