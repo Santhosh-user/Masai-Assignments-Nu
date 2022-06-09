@@ -12,6 +12,11 @@ const OneUser = () =>{
         street: "",
         area: "",
     })
+    const [eAddress, seteAddress] = useState({
+        street: "",
+        area:"",
+    })
+    const [trackNo, settrackNo] = useState(0)
    
 
 
@@ -20,6 +25,14 @@ const OneUser = () =>{
         const {id,value}=e.target
         setfreshAddress({
             ...freshAddress,[id]:value
+        })
+    }
+
+
+    const changeAddress=(e)=>{
+        const {id,value}=e.target
+        seteAddress({
+            ...eAddress,[id]:value
         })
     }
 
@@ -78,6 +91,23 @@ const OneUser = () =>{
           });
     }
 
+    const editedAddress=(e)=>{
+        e.preventDefault()
+       
+        axios.patch(`http://localhost:2345/users/${id}/addresses/${trackNo}`, {
+            street: eAddress.street,
+            area: eAddress.area,
+          })
+          .then(function (response) {
+            console.log(response);
+            console.log("edited")
+            
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
 
 
 
@@ -93,7 +123,8 @@ const OneUser = () =>{
                 return( <div>
                     <div>Address</div>
                     <div>Street: {e.street}</div>
-                    <button>Edit Address1</button>
+                    <div>Area: {e.area}</div>
+                    <button onClick={()=>{settrackNo(i)}}>Edit Address</button>
                     
                     <br />
                     <br />
@@ -112,8 +143,25 @@ const OneUser = () =>{
 
                 <label htmlFor="">Area</label>
                 <input onChange={upAddress} id={"area"} type="text" />
-                <button onClick={addAddress}>Add new address</button>
+                <button onClick={addAddress} >Add new address</button>
             </form>
+            <br />
+            <br />
+            <br />
+            <div>Edit Address</div>
+           <form action="">
+                <label htmlFor="">Street</label>
+                <input onChange={changeAddress} id={"street"} type="text" />
+                <br />
+                <br />
+
+                <label htmlFor="">Area</label>
+                <input onChange={changeAddress} id={"area"} type="text" />
+                <button onClick={editedAddress}>Add edited address</button>
+           </form>
+
+
+
 
 
 
