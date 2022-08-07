@@ -34,6 +34,7 @@ const OneUser = () =>{
         seteAddress({
             ...eAddress,[id]:value
         })
+        console.log(eAddress)
     }
 
     useEffect(()=>{
@@ -101,6 +102,7 @@ const OneUser = () =>{
           .then(function (response) {
             console.log(response);
             console.log("edited")
+            console.log(eAddress.street, eAddress.area)
             
           })
           .catch(function (error) {
@@ -156,8 +158,9 @@ const OneUser = () =>{
                 <br />
 
                 <label htmlFor="">Area</label>
-                <input onChange={changeAddress} id={"area"} type="text" />
+                <input  onChange={changeAddress} id={"area"} type="text" />
                 <button onClick={editedAddress}>Add edited address</button>
+                
            </form>
 
 
